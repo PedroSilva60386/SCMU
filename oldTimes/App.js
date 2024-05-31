@@ -7,6 +7,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Header from "./src/components/Header";
 import Home from "./src/screens/Home";
 import { Ionicons } from "@expo/vector-icons";
+import RegisterStaff from "./src/screens/RegisterStaff";
+import RoomList from "./src/screens/RoomList";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -35,11 +37,34 @@ const StackNavigator = () => {
           },
         }}
       />
+
       <Stack.Screen
         component={TabNavigator}
         name="TabNavigator"
         options={{
           headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        component={RoomList}
+        name="RoomList"
+        options={{
+          headerTitle: () => <Header name="Old Times" />,
+          headerStyle: {
+            backgroundColor: "#7CB9E8",
+            height: 120,
+          },
+        }}
+      />
+      <Stack.Screen
+        component={RegisterStaff}
+        name="RegisterStaff"
+        options={{
+          headerTitle: () => <Header name="Old Times" />,
+          headerStyle: {
+            backgroundColor: "#7CB9E8",
+            height: 120,
+          },
         }}
       />
     </Stack.Navigator> // Add the closing tag for the 'Stack.Navigator' component

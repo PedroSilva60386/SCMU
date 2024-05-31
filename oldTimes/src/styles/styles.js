@@ -23,12 +23,18 @@ export const styles = StyleSheet.create({
   },
 
   button: {
-    backgroundColor: "purple",
+    backgroundColor: "#7CB9E8",
     padding: 15,
     borderRadius: 10,
     margin: 20,
     alignItems: "center",
     width: 250,
+  },
+
+  buttonText: {
+    color: "white",
+    fontSize: 15,
+    fontWeight: "bold",
   },
 
   pressable: {

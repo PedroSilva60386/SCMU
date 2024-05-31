@@ -22,6 +22,10 @@ const FirstPage = () => {
     try {
       const user = await signIn(email, password);
       setLoading(false);
+      navigation.reset({
+        index: 0,
+        routes: [{ name: "TabNavigator" }],
+      });
     } catch (error) {
       setLoading(false);
       if (error.code === "auth/invalid-credential") {
@@ -36,6 +40,7 @@ const FirstPage = () => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}></View>
       <View
         style={{
           flex: 1,
@@ -45,15 +50,18 @@ const FirstPage = () => {
           bottom: 300,
           left: 10,
           right: 0,
-          backgroundColor: "#fff",
+          backgroundColor: "#F5F5F5",
         }}
       >
+        <Text style={styles.title}>Please login:</Text>
+        <Text style={styles.inputTitle}>Email:</Text>
         <TextInput
           style={styles.input}
-          placeholder="Email do Staff "
+          placeholder="Email"
           value={email}
           onChangeText={(email) => setEmail(email)}
         ></TextInput>
+        <Text style={styles.inputTitle}>Password:</Text>
         <TextInput
           style={styles.input}
           placeholder="Password"

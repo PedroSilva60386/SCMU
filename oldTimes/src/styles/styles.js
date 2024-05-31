@@ -1,11 +1,12 @@
 import { StyleSheet } from "react-native";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: "#F5F5F5",
   },
 
   input: {
@@ -48,5 +49,24 @@ export const styles = StyleSheet.create({
     position: "relative",
     fontSize: 22,
     fontWeight: "bold",
+  },
+
+  inputTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginTop: 1,
+    marginBottom: 1,
+    alignSelf: "left",
+    marginLeft: 10,
+  },
+
+  title: {
+    fontSize: 30,
+    fontWeight: "bold",
+    marginTop: 1,
+    marginBottom: 10,
+    alignSelf: "left",
+    marginLeft: 10,
+    color: "#6699CC",
   },
 });

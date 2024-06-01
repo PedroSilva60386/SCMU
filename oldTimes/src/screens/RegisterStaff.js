@@ -46,7 +46,7 @@ const RegisterStaff = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.mainText}>Staff Info</Text>
+      <Text style={styles.title}>Staff Information</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -71,7 +71,7 @@ const RegisterStaff = () => {
       ) : (
         <View>
           <Pressable style={styles.pressable} onPress={signUp}>
-            <Text style={styles.mainText}>Register</Text>
+            <Text style={styles.buttonText}>Register</Text>
           </Pressable>
         </View>
       )}

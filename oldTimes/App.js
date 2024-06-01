@@ -46,17 +46,6 @@ const StackNavigator = () => {
         }}
       />
       <Stack.Screen
-        component={RoomList}
-        name="RoomList"
-        options={{
-          headerTitle: () => <Header name="Old Times" />,
-          headerStyle: {
-            backgroundColor: "#7CB9E8",
-            height: 120,
-          },
-        }}
-      />
-      <Stack.Screen
         component={RegisterStaff}
         name="RegisterStaff"
         options={{
@@ -85,7 +74,7 @@ const TabNavigator = () => {
           },
           tabBarActiveTintColor: "#000000",
           tabBarIcon: () => {
-            return <Ionicons name="home" size={30} color="#874FFF" />;
+            return <Ionicons name="home" size={30} color="#7CB9E8" />;
           },
         }}
       />

@@ -37,7 +37,7 @@ const RegisterStaff = () => {
     }
   };
   const handleAddUser = (role) => {
-    app.firestore().collection("users").doc(email).set({
+    app.firestore().collection("staff").doc(email).set({
       name,
       email,
       role,

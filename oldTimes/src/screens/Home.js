@@ -36,16 +36,9 @@ const Home = () => {
       if (userData.role === "staff") {
         return (
           <View style={styles.container}>
-            <Text style={{ marginBottom: 30 }}></Text>
             <TouchableOpacity
               style={styles.button}
               onPress={() => navigation.navigate("RegisterStaff")}
-            >
-              <Text style={styles.buttonText}>Register Staff</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => navigation.navigate("RoomList")}
             >
               <Text style={styles.buttonText}>List of Rooms</Text>
             </TouchableOpacity>

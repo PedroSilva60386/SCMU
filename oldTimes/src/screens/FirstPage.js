@@ -9,6 +9,7 @@ import {
 import { signIn } from "../services/auth";
 import { styles } from "../styles/styles";
 import { useNavigation } from "@react-navigation/native";
+import { Image } from "react-native";
 
 const FirstPage = () => {
   const [email, setEmail] = useState("");
@@ -17,7 +18,6 @@ const FirstPage = () => {
   const navigation = useNavigation();
 
   const handleLogin = async () => {
-    // Add your login logic here
     setLoading(true);
     try {
       const user = await signIn(email, password);
@@ -39,7 +39,18 @@ const FirstPage = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View
+      style={{
+        backgroundColor: "#F5F5F5",
+        flex: 1,
+        position: "absolute",
+        top: 0,
+        bottom: "5%",
+        left: 0,
+        right: 0,
+      }}
+    >
+      <Image source={require("../../assets/old.jpg")} style={styles.image} />
       <View style={styles.header}></View>
       <View
         style={{
@@ -47,8 +58,8 @@ const FirstPage = () => {
           justifyContent: "left",
           alignItems: "left",
           position: "absolute",
-          bottom: 300,
-          left: 10,
+          bottom: "5%",
+          left: 0,
           right: 0,
           backgroundColor: "#F5F5F5",
         }}
@@ -72,20 +83,18 @@ const FirstPage = () => {
         {loading ? (
           <ActivityIndicator color="#0000ff" size="large" />
         ) : (
-          <View>
-            <Pressable style={styles.pressable} onPress={handleLogin}>
-              <Text
-                style={{
-                  position: "relative",
-                  fontSize: 22,
-                  color: "#fff",
-                  fontWeight: "bold",
-                }}
-              >
-                Login
-              </Text>
-            </Pressable>
-          </View>
+          <Pressable style={styles.pressable} onPress={handleLogin}>
+            <Text
+              style={{
+                position: "relative",
+                fontSize: 22,
+                color: "#fff",
+                fontWeight: "bold",
+              }}
+            >
+              Login
+            </Text>
+          </Pressable>
         )}
       </View>
     </View>

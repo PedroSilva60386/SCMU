@@ -12,13 +12,13 @@ export const styles = StyleSheet.create({
   input: {
     fontSize: 18,
     fontWeight: "bold",
-    marginTop: 10,
-    marginBottom: 5,
+    marginTop: 20,
+    marginBottom: 10,
+    left: "1%",
     height: 50,
-    alignSelf: "center",
-    width: "95%",
+    width: "97%",
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: 1,
     padding: 10,
   },
 
@@ -67,12 +67,19 @@ export const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: "bold",
     marginTop: 1,
     marginBottom: 10,
     alignSelf: "left",
     marginLeft: 10,
     color: "#6699CC",
+  },
+
+  image: {
+    width: "100%",
+    height: "100%",
+    bottom: "25%",
+    resizeMode: "contain",
   },
 });

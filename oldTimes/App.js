@@ -9,6 +9,7 @@ import Home from "./src/screens/Home";
 import { Ionicons } from "@expo/vector-icons";
 import RegisterStaff from "./src/screens/RegisterStaff";
 import RoomList from "./src/screens/RoomList";
+import Profile from "./src/screens/Profile";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -27,7 +28,7 @@ const StackNavigator = () => {
     <Stack.Navigator>
       <Stack.Screen
         component={FirstPage}
-        name="FirstPage"
+        name="First Page"
         options={{
           headerShown: true,
           headerTitle: () => <Header name="Old Times" />,
@@ -37,23 +38,35 @@ const StackNavigator = () => {
           },
         }}
       />
-
       <Stack.Screen
-        component={TabNavigator}
-        name="TabNavigator"
+        component={RoomList}
+        name="RoomList"
         options={{
-          headerShown: false,
+          headerShown: true,
+          headerTitle: () => <Header name="Old Times" />,
+          headerStyle: {
+            backgroundColor: "#7CB9E8",
+            height: 120,
+          },
         }}
       />
       <Stack.Screen
         component={RegisterStaff}
         name="RegisterStaff"
         options={{
+          headerShown: true,
           headerTitle: () => <Header name="Old Times" />,
           headerStyle: {
             backgroundColor: "#7CB9E8",
             height: 120,
           },
+        }}
+      />
+      <Stack.Screen
+        component={TabNavigator}
+        name="TabNavigator"
+        options={{
+          headerShown: false,
         }}
       />
     </Stack.Navigator> // Add the closing tag for the 'Stack.Navigator' component
@@ -75,6 +88,21 @@ const TabNavigator = () => {
           tabBarActiveTintColor: "#000000",
           tabBarIcon: () => {
             return <Ionicons name="home" size={30} color="#7CB9E8" />;
+          },
+        }}
+      />
+      <Tab.Screen
+        component={Profile}
+        name="Profile"
+        options={{
+          headerTitle: () => <Header name="Old Times" />,
+          headerStyle: {
+            backgroundColor: "#7CB9E8",
+            height: 120,
+          },
+          tabBarActiveTintColor: "#000000",
+          tabBarIcon: () => {
+            return <Ionicons name="person" size={30} color="#7CB9E8" />;
           },
         }}
       />

@@ -9,6 +9,13 @@ export const styles = StyleSheet.create({
     backgroundColor: "#F5F5F5",
   },
 
+  boxText: {
+    position: "relative",
+    fontSize: 15,
+    fontWeight: "semibold",
+    alignSelf: "center",
+  },
+
   input: {
     fontSize: 18,
     fontWeight: "bold",
@@ -25,10 +32,18 @@ export const styles = StyleSheet.create({
   button: {
     backgroundColor: "#7CB9E8",
     padding: 15,
-    borderRadius: 10,
-    margin: 20,
+    borderRadius: 5,
+    margin: 10,
     alignItems: "center",
     width: 250,
+  },
+
+  buttonView: {
+    flexDirection: "column",
+    justifyContent: "space-around",
+    alignItems: "center",
+    width: "97%",
+    bottom: "40%",
   },
 
   buttonText: {

@@ -28,7 +28,7 @@ const StackNavigator = () => {
     <Stack.Navigator>
       <Stack.Screen
         component={FirstPage}
-        name="First Page"
+        name="FirstPage"
         options={{
           headerShown: true,
           headerTitle: () => <Header name="Old Times" />,

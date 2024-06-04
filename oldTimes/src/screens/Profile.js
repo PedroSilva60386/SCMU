@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
-import React from "react";
+import React, {useState, useEffect} from "react";
+import { app } from "../services/fireBaseConfig";
 import { useNavigation } from "@react-navigation/native";
 import { useAuth } from "../context/authContext";
 import { styles } from "../styles/styles";
@@ -7,6 +8,8 @@ import { signOut } from "../services/auth";
 const Profile = () => {
   const navigation = useNavigation();
   const { currentUser, userData, setUserData } = useAuth();
+  const [numRooms, setNumRooms] = useState('');
+  const [numStaf, setNumStaff] = useState('');
 
   const handleLogOut = () => {
     signOut().then(() => {
@@ -14,6 +17,21 @@ const Profile = () => {
       navigation.navigate("FirstPage");
     });
   };
+  useEffect(() => {
+      const db = app.firestore();
+      const unsubscribeRooms = db.collection('rooms').onSnapshot((snapshot) => {
+      setNumRooms(snapshot.size);
+    });
+      const unsubscribeStaff = db.collection('users').where("role", "==", "staff").onSnapshot((snapshot) => {
+      setNumStaff(snapshot.size);
+    });
+    return () => {
+      unsubscribeRooms();
+      unsubscribeStaff();
+    };
+  }, []);
+
+  
 
   const ProfileContent = () => {
     if (!userData || userData === null || userData === undefined) {
@@ -59,7 +77,7 @@ const Profile = () => {
                   alignSelf: "center",
                 }}
               >
-                <Text style={styles.boxText}>53</Text>
+                <Text style={styles.boxText}>{numStaf}</Text>
               </View>
             </View>
             <View
@@ -88,7 +106,7 @@ const Profile = () => {
                   alignSelf: "center",
                 }}
               >
-                <Text style={styles.boxText}>27</Text>
+                <Text style={styles.boxText}>{numRooms}</Text>
               </View>
             </View>
             <View style={styles.buttonView}>

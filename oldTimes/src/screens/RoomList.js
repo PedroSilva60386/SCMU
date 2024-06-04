@@ -20,7 +20,6 @@ const RoomList = () => {
         newRooms.push({ label: "Select Room", value: null });
         querySnapshot.forEach((doc) => {
           const { number, name, age } = doc.data();
-          if (firebase.collection("users").role === "staff") return;
           newRooms.push({ label: number, value: name, age });
         });
         setListRooms(newRooms);

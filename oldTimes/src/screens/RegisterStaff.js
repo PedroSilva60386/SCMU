@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, ActivityIndicator } from "react-native";
 import React from "react";
 import { styles } from "../styles/styles";
 import { useNavigation } from "@react-navigation/native";
@@ -6,6 +6,7 @@ import { useState } from "react";
 import { signUp } from "../services/auth";
 import { TextInput } from "react-native-gesture-handler";
 import { Pressable } from "react-native";
+import { app } from "../services/fireBaseConfig";
 
 const RegisterStaff = () => {
   const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ const RegisterStaff = () => {
 
   const navigation = useNavigation();
 
-  const signUp = async () => {
+  const doSignUp = async () => {
     setLoading(true);
     try {
       const user = await signUp(email, password);
@@ -37,7 +38,7 @@ const RegisterStaff = () => {
     }
   };
   const handleAddUser = (role) => {
-    app.firestore().collection("staff").doc(email).set({
+    app.firestore().collection("users").doc(email).set({
       name,
       email,
       role,
@@ -70,7 +71,7 @@ const RegisterStaff = () => {
         <ActivityIndicator color="#0000ff" size="large" />
       ) : (
         <View>
-          <Pressable style={styles.pressable} onPress={signUp}>
+          <Pressable style={styles.pressable} onPress={doSignUp}>
             <Text style={styles.buttonText}>Register</Text>
           </Pressable>
         </View>

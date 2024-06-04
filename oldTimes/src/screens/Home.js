@@ -30,6 +30,12 @@ const Home = () => {
             >
               <Text style={styles.buttonText}>List of Rooms</Text>
             </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate("RegisterRoom")}
+            >
+              <Text style={styles.buttonText}>Register Room</Text>
+            </TouchableOpacity>
           </View>
         );
       }
@@ -38,7 +44,13 @@ const Home = () => {
           <View style={styles.container}>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => navigation.navigate("RegisterStaff")}
+              onPress={() => navigation.navigate("RegisterRoom")}
+            >
+              <Text style={styles.buttonText}>Register Room</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate("RoomList")}
             >
               <Text style={styles.buttonText}>List of Rooms</Text>
             </TouchableOpacity>

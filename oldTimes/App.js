@@ -11,6 +11,7 @@ import RegisterStaff from "./src/screens/RegisterStaff";
 import RoomList from "./src/screens/RoomList";
 import Profile from "./src/screens/Profile";
 import RegisterRoom from "./src/screens/RegisterRoom";
+import StaffList from "./src/screens/StaffList";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -42,6 +43,18 @@ const StackNavigator = () => {
       <Stack.Screen
         component={RoomList}
         name="RoomList"
+        options={{
+          headerShown: true,
+          headerTitle: () => <Header name="Old Times" />,
+          headerStyle: {
+            backgroundColor: "#7CB9E8",
+            height: 120,
+          },
+        }}
+      />
+      <Stack.Screen
+        component={StaffList}
+        name="StaffList"
         options={{
           headerShown: true,
           headerTitle: () => <Header name="Old Times" />,

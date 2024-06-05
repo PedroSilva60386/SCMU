@@ -11,7 +11,7 @@ import { app } from "../services/fireBaseConfig";
 const RegisterStaff = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [username, setName] = useState("");
   const [loading, setLoading] = useState("");
 
   const navigation = useNavigation();
@@ -39,7 +39,7 @@ const RegisterStaff = () => {
   };
   const handleAddUser = (role) => {
     app.firestore().collection("users").doc(email).set({
-      name,
+      username,
       email,
       role,
     });
@@ -57,8 +57,8 @@ const RegisterStaff = () => {
       <TextInput
         style={styles.input}
         placeholder="Name"
-        value={name}
-        onChangeText={(name) => setName(name)}
+        value={username}
+        onChangeText={(username) => setName(username)}
       ></TextInput>
       <TextInput
         style={styles.input}

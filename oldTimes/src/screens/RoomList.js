@@ -20,7 +20,7 @@ const RoomList = () => {
         newRooms.push({ label: "Select Room", value: null });
         querySnapshot.forEach((doc) => {
           const { number, name, age } = doc.data();
-          newRooms.push({ label: number, value: name, age });
+          newRooms.push({ label: number, value: number });
         });
         setListRooms(newRooms);
       });

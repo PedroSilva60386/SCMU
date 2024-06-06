@@ -1,10 +1,9 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Switch } from "react-native";
 import React from "react";
 import { useEffect, useState } from "react";
 import DropDownPicker from "react-native-dropdown-picker";
 import { app } from "../services/fireBaseConfig";
 import { useNavigation } from "@react-navigation/native";
-import { Switch } from "react-native";
 
 const RoomList = () => {
   const [listRooms, setListRooms] = useState([]);
@@ -29,20 +28,6 @@ const RoomList = () => {
       });
   }, []);
 
-  const handleRoomChange = (value) => {
-    setListUserValue(value);
-  };
-
-  useEffect(() => {
-    if (!listUserValue) {
-      setSwitchValueAC(false);
-      setSwitchValueD(
-        listRooms.find((room) => room.value === listUserValue)?.switchValueD ||
-          false
-      );
-    }
-  }, [listUserValue]);
-
   return (
     <View style={styles.container}>
       <View style={[styles.dropDownView, { zIndex: 3 }]}>
@@ -52,7 +37,7 @@ const RoomList = () => {
           value={listUserValue}
           items={listRooms}
           setOpen={setOpenListRooms}
-          setValue={handleRoomChange}
+          setValue={setListUserValue}
           setItems={setListRooms}
           placeholder="Select Room"
           textStyle={{ fontSize: 18, fontWeight: "bold" }}
@@ -106,21 +91,10 @@ const RoomList = () => {
           </Text>
           <View
             style={{
-              container: {
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "left ",
-                backgroundColor: "#F5F5F5",
-              },
-            }}
-          ></View>
-          <View
-            style={{
               flexDirection: "row",
               alignItems: "center",
               alignSelf: "left",
-              top: 50,
-              right: 100,
+              marginTop: 350,
             }}
           >
             <View
@@ -129,16 +103,14 @@ const RoomList = () => {
                 alignItems: "center",
                 alignSelf: "left",
                 borderRadius: 10,
+                right: 100,
                 width: 200,
-                top: 300,
                 backgroundColor: "#7CB9E8",
               }}
             >
-              <Text style={{ marginLeft: 10, marginRight: 10, fontSize: 18 }}>
-                AC
-              </Text>
+              <Text style={{ marginLeft: 15, fontSize: 18 }}>AC</Text>
               <Switch
-                marginLeft={95}
+                left={100}
                 value={switchValueAC}
                 onValueChange={(value) => setSwitchValueAC(value)}
               />
@@ -148,16 +120,16 @@ const RoomList = () => {
                   alignItems: "center",
                   alignSelf: "left",
                   borderRadius: 10,
-                  width: 210,
-                  marginLeft: 20,
+                  left: 125,
+                  width: 200,
                   backgroundColor: "#7CB9E8",
                 }}
               >
-                <Text style={{ marginLeft: 10, fontSize: 18 }}>
+                <Text style={{ marginLeft: 20, fontSize: 18 }}>
                   Dehumidifier
                 </Text>
                 <Switch
-                  marginLeft={40}
+                  left={20}
                   value={switchValueD}
                   onValueChange={(value) => setSwitchValueD(value)}
                 />

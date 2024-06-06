@@ -25,7 +25,7 @@ const RegisterStaff = () => {
       }
       setLoading(false);
       navigation.navigate("Home");
-      alert("Staff " + name + " registered with success");
+      alert("Staff " + username + " registered with success");
     } catch (error) {
       setLoading(false);
       if (error.code === "auth/email-already-in-use") {

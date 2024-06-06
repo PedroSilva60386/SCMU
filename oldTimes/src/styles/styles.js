@@ -110,4 +110,13 @@ export const styles = StyleSheet.create({
     alignSelf: "center",
     backgroundColor: "rgba(0,0,0,0)",
   },
+
+  box: {
+    backgroundColor: "#f0f0f0",
+    borderRadius: 10,
+    padding: 20,
+    margin: 10,
+    width: "80%",
+    alignItems: "center",
+  },
 });

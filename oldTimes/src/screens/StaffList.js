@@ -8,11 +8,10 @@ import { useAuth } from "../context/authContext";
 
 const StaffList = () => {
   const [listStaff, setListStaff] = useState([]);
-  const { userData, setUserData } = useAuth();
   const [openListStaff, setOpenListStaff] = useState(false);
   const [listUserValue, setListUserValue] = useState(null);
-  const [listUserLabel, setListUserLabel] = useState(null);
-  newStaff = [];
+  //const [listUserLabel, setListUserLabel] = useState(null);
+  const { currentUser, userData } = useAuth();
 
   const navigation = useNavigation();
   useEffect(() => {
@@ -20,11 +19,11 @@ const StaffList = () => {
       .firestore()
       .collection("users")
       .onSnapshot((querySnapshot) => {
+        const newStaff = [];
         newStaff.push({ label: "Select Staff", value: null });
         querySnapshot.forEach((doc) => {
           const { email, role, username } = doc.data();
           if (role === "staff") {
-            setListUserLabel(username);
             newStaff.push({ label: username, value: email });
           }
         });
@@ -40,9 +39,8 @@ const StaffList = () => {
           open={openListStaff}
           value={listUserValue}
           items={listStaff}
-          label={listUserLabel}
+          //label={listUserLabel}
           setOpen={setOpenListStaff}
-          setUserLabel={setListUserLabel}
           setValue={setListUserValue}
           setItems={setListStaff}
           placeholder="Select Staff"
@@ -52,8 +50,50 @@ const StaffList = () => {
       </View>
       {listUserValue ? (
         <View>
-          <Text style={styles.boxText}>Staff Information: {listUserValue}</Text>
-          <Text>{listUserLabel}</Text>
+          <Text
+            style={{
+              fontSize: 25,
+              fontWeight: "bold",
+              marginTop: 1,
+              marginBottom: 10,
+              marginLeft: 10,
+              alignSelf: "left",
+              top: 50,
+              right: 100,
+              color: "black",
+            }}
+          >
+            Staff Information:
+          </Text>
+          <Text
+            style={{
+              fontSize: 18,
+              marginTop: 1,
+              marginBottom: 10,
+              marginLeft: 10,
+              alignSelf: "left",
+              top: 50,
+              right: 100,
+              color: "black",
+            }}
+          >
+            Email: {listUserValue}
+          </Text>
+          <Text
+            style={{
+              fontSize: 18,
+              marginTop: 1,
+              marginBottom: 10,
+              marginLeft: 10,
+              alignSelf: "left",
+              top: 50,
+              right: 100,
+              color: "black",
+            }}
+          >
+            Name:{" "}
+            {listStaff.find((staff) => staff.value === listUserValue).label}
+          </Text>
         </View>
       ) : null}
     </View>

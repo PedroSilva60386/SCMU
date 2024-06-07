@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import DropDownPicker from "react-native-dropdown-picker";
 import { app } from "../services/fireBaseConfig";
 import { useNavigation } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const RoomList = () => {
   const [listRooms, setListRooms] = useState([]);
@@ -11,6 +12,7 @@ const RoomList = () => {
   const [listUserValue, setListUserValue] = useState(null);
   const [switchValueAC, setSwitchValueAC] = useState(false);
   const [switchValueD, setSwitchValueD] = useState(false);
+  const [switchValueM, setSwitchValueM] = useState(false);
 
   const navigation = useNavigation();
   useEffect(() => {
@@ -55,7 +57,7 @@ const RoomList = () => {
               marginLeft: 10,
               alignSelf: "left",
               top: 50,
-              right: 100,
+              right: 80,
               color: "black",
             }}
           >
@@ -89,52 +91,79 @@ const RoomList = () => {
           >
             Age: {listRooms.find((room) => room.value === listUserValue)?.age}
           </Text>
+
           <View
             style={{
               flexDirection: "row",
               alignItems: "center",
               alignSelf: "left",
-              marginTop: 350,
+              borderRadius: 10,
+              top: 300,
+              width: 200,
+              right: 100,
+              backgroundColor: "#7CB9E8",
             }}
           >
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                alignSelf: "left",
-                borderRadius: 10,
-                right: 100,
-                width: 200,
-                backgroundColor: "#7CB9E8",
-              }}
-            >
-              <Text style={{ marginLeft: 15, fontSize: 18 }}>AC</Text>
-              <Switch
-                left={100}
-                value={switchValueAC}
-                onValueChange={(value) => setSwitchValueAC(value)}
-              />
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  alignSelf: "left",
-                  borderRadius: 10,
-                  left: 125,
-                  width: 200,
-                  backgroundColor: "#7CB9E8",
-                }}
-              >
-                <Text style={{ marginLeft: 20, fontSize: 18 }}>
-                  Dehumidifier
-                </Text>
-                <Switch
-                  left={20}
-                  value={switchValueD}
-                  onValueChange={(value) => setSwitchValueD(value)}
-                />
-              </View>
-            </View>
+            <Text style={{ marginLeft: 15, fontSize: 18 }}>AC</Text>
+            <Switch
+              marginLeft={105}
+              value={switchValueAC}
+              onValueChange={(value) => setSwitchValueAC(value)}
+            />
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              alignSelf: "left",
+              borderRadius: 10,
+              width: 200,
+              top: 310,
+              right: 100,
+
+              backgroundColor: "#7CB9E8",
+            }}
+          >
+            <Text style={{ marginLeft: 20, fontSize: 18 }}>Dehumidifier</Text>
+            <Switch
+              marginLeft={22}
+              value={switchValueD}
+              onValueChange={(value) => setSwitchValueD(value)}
+            />
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              alignSelf: "left",
+              borderRadius: 10,
+              width: 200,
+              top: 320,
+              right: 100,
+
+              backgroundColor: "#7CB9E8",
+            }}
+          >
+            <Text style={{ marginLeft: 20, fontSize: 18 }}>Motion Sensor</Text>
+            <Switch
+              marginLeft={5}
+              value={switchValueM}
+              onValueChange={(value) => setSwitchValueM(value)}
+            />
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              alignSelf: "center",
+              top: 330,
+              right: 100,
+            }}
+          >
+            <TouchableOpacity style={styles.button}>
+              <Text>ola</Text>
+            </TouchableOpacity>
           </View>
         </View>
       ) : null}

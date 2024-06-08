@@ -14,6 +14,7 @@ const RegisterStaff = () => {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const { userData } = useAuth();
+  const [overseer, setOverseer] = useState("");
 
   const navigation = useNavigation();
 
@@ -28,7 +29,7 @@ const RegisterStaff = () => {
           name,
           number: parseInt(number),
           age: parseInt(age),
-          overseer: userData.username,
+          overseer: userData.role === "staff" ? userData.username : overseer,
           motionSensor: false,
           temperatureSensor: false,
           humiditySensor: false,
@@ -42,41 +43,86 @@ const RegisterStaff = () => {
     }
   };
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Room Information</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Name"
-        value={name}
-        onChangeText={(name) => setName(name)}
-      ></TextInput>
-      <TextInput
-        style={styles.input}
-        placeholder="Age"
-        value={age}
-        onChangeText={(age) => setAge(age)}
-        keyboardType="numeric"
-      ></TextInput>
-      <TextInput
-        style={styles.input}
-        placeholder="Room Number"
-        value={number}
-        onChangeText={(number) => setNumber(number)}
-        keyboardType="numeric"
-      ></TextInput>
+  if (userData.role === "staff") {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Room Information</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Name"
+          value={name}
+          onChangeText={(name) => setName(name)}
+        ></TextInput>
+        <TextInput
+          style={styles.input}
+          placeholder="Age"
+          value={age}
+          onChangeText={(age) => setAge(age)}
+          keyboardType="numeric"
+        ></TextInput>
+        <TextInput
+          style={styles.input}
+          placeholder="Room Number"
+          value={number}
+          onChangeText={(number) => setNumber(number)}
+          keyboardType="numeric"
+        ></TextInput>
 
-      {loading ? (
-        <ActivityIndicator color="#0000ff" size="large" />
-      ) : (
-        <View>
-          <Pressable style={styles.pressable} onPress={registerRoom}>
-            <Text style={styles.buttonText}>Register Room</Text>
-          </Pressable>
-        </View>
-      )}
-    </View>
-  );
+        {loading ? (
+          <ActivityIndicator color="#0000ff" size="large" />
+        ) : (
+          <View>
+            <Pressable style={styles.pressable} onPress={registerRoom}>
+              <Text style={styles.buttonText}>Register Room</Text>
+            </Pressable>
+          </View>
+        )}
+      </View>
+    );
+  } else {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Room Information</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Name"
+          value={name}
+          onChangeText={(name) => setName(name)}
+        ></TextInput>
+        <TextInput
+          style={styles.input}
+          placeholder="Age"
+          value={age}
+          onChangeText={(age) => setAge(age)}
+          keyboardType="numeric"
+        ></TextInput>
+        <TextInput
+          style={styles.input}
+          placeholder="Room Number"
+          value={number}
+          onChangeText={(number) => setNumber(number)}
+          keyboardType="numeric"
+        ></TextInput>
+        {userData.role === "admin" && (
+          <TextInput
+            style={styles.input}
+            placeholder="Overseer"
+            value={overseer}
+            onChangeText={(overseer) => setOverseer(overseer)}
+          ></TextInput>
+        )}
+        {loading ? (
+          <ActivityIndicator color="#0000ff" size="large" />
+        ) : (
+          <View>
+            <Pressable style={styles.pressable} onPress={registerRoom}>
+              <Text style={styles.buttonText}>Register Room</Text>
+            </Pressable>
+          </View>
+        )}
+      </View>
+    );
+  }
 };
 
 export default RegisterStaff;

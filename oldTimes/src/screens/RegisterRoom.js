@@ -29,7 +29,7 @@ const RegisterStaff = () => {
           name,
           number: parseInt(number),
           age: parseInt(age),
-          overseer: userData.role === "staff" ? userData.username : overseer,
+          overseer: userData.role === "staff" ? userData.email : overseer,
           motionSensor: false,
           temperatureSensor: false,
           humiditySensor: false,

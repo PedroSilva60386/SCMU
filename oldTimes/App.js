@@ -12,6 +12,7 @@ import RoomList from "./src/screens/RoomList";
 import Profile from "./src/screens/Profile";
 import RegisterRoom from "./src/screens/RegisterRoom";
 import StaffList from "./src/screens/StaffList";
+import RoomInfo from "./src/screens/RoomInfo";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -93,6 +94,18 @@ const StackNavigator = () => {
         name="TabNavigator"
         options={{
           headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        component={RoomInfo}
+        name="RoomInfo"
+        options={{
+          headerShown: true,
+          headerTitle: () => <Header name="Old Times" />,
+          headerStyle: {
+            backgroundColor: "#7CB9E8",
+            height: 120,
+          },
         }}
       />
     </Stack.Navigator> // Add the closing tag for the 'Stack.Navigator' component

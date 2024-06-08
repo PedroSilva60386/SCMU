@@ -5,11 +5,12 @@ import DropDownPicker from "react-native-dropdown-picker";
 import { app } from "../services/fireBaseConfig";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { Image } from "react-native";
 
 const RoomList = () => {
   const [listRooms, setListRooms] = useState([]);
   const [openListRooms, setOpenListRooms] = useState(false);
-  const [listUserValue, setListUserValue] = useState(null);
+  const [listRoomValue, setListRoomValue] = useState(null);
   const [switchValueAC, setSwitchValueAC] = useState(false);
   const [switchValueD, setSwitchValueD] = useState(false);
   const [switchValueM, setSwitchValueM] = useState(false);
@@ -36,17 +37,17 @@ const RoomList = () => {
         <Text style={styles.title}>Rooms</Text>
         <DropDownPicker
           open={openListRooms}
-          value={listUserValue}
+          value={listRoomValue}
           items={listRooms}
           setOpen={setOpenListRooms}
-          setValue={setListUserValue}
+          setValue={setListRoomValue}
           setItems={setListRooms}
           placeholder="Select Room"
           textStyle={{ fontSize: 18, fontWeight: "bold" }}
           style={styles.dropDown}
         />
       </View>
-      {listUserValue ? (
+      {listRoomValue ? (
         <View>
           <Text
             style={{
@@ -71,11 +72,11 @@ const RoomList = () => {
               marginLeft: 10,
               alignSelf: "left",
               top: 50,
-              right: 100,
+              right: 80,
               color: "black",
             }}
           >
-            Name: {listRooms.find((room) => room.value === listUserValue)?.name}
+            Name: {listRooms.find((room) => room.value === listRoomValue)?.name}
           </Text>
           <Text
             style={{
@@ -85,11 +86,11 @@ const RoomList = () => {
               marginLeft: 10,
               alignSelf: "left",
               top: 50,
-              right: 100,
+              right: 80,
               color: "black",
             }}
           >
-            Age: {listRooms.find((room) => room.value === listUserValue)?.age}
+            Age: {listRooms.find((room) => room.value === listRoomValue)?.age}
           </Text>
 
           <View
@@ -100,7 +101,7 @@ const RoomList = () => {
               borderRadius: 10,
               top: 300,
               width: 200,
-              right: 100,
+              right: 80,
               backgroundColor: "#7CB9E8",
             }}
           >
@@ -119,7 +120,7 @@ const RoomList = () => {
               borderRadius: 10,
               width: 200,
               top: 310,
-              right: 100,
+              right: 80,
 
               backgroundColor: "#7CB9E8",
             }}
@@ -139,7 +140,7 @@ const RoomList = () => {
               borderRadius: 10,
               width: 200,
               top: 320,
-              right: 100,
+              right: 80,
 
               backgroundColor: "#7CB9E8",
             }}
@@ -158,11 +159,34 @@ const RoomList = () => {
               alignItems: "center",
               alignSelf: "center",
               top: 330,
-              right: 100,
+              left: 125,
             }}
           >
-            <TouchableOpacity style={styles.button}>
-              <Text>ola</Text>
+            <TouchableOpacity
+              style={{
+                backgroundColor: "#7CB9E8",
+                padding: 15,
+                borderRadius: 5,
+                margin: 10,
+                alignItems: "center",
+                right: 20,
+                width: 150,
+                height: 165,
+                bottom: 185,
+              }}
+              onPress={() =>
+                navigation.navigate("RoomInfo", { room: listRoomValue })
+              }
+            >
+              <Image
+                source={require("../../assets/termometro.png")}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  overflow: "hidden",
+                  borderWidth: 3,
+                }}
+              />
             </TouchableOpacity>
           </View>
         </View>

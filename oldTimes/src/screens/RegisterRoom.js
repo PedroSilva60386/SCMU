@@ -6,12 +6,14 @@ import { useState } from "react";
 import { TextInput } from "react-native-gesture-handler";
 import { Pressable } from "react-native";
 import { app } from "../services/fireBaseConfig";
+import { useAuth } from "../context/authContext";
 
 const RegisterStaff = () => {
   const [number, setNumber] = useState();
   const [age, setAge] = useState();
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
+  const { userData } = useAuth();
 
   const navigation = useNavigation();
 
@@ -26,7 +28,10 @@ const RegisterStaff = () => {
           name,
           number: parseInt(number),
           age: parseInt(age),
-          // add overseer
+          overseer: userData.username,
+          motionSensor: false,
+          temperatureSensor: false,
+          humiditySensor: false,
         });
       setLoading(false);
       navigation.navigate("Home");

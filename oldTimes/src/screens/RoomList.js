@@ -33,16 +33,19 @@ const RoomList = () => {
 
   useEffect(() => {
     console.log(listRoomValue);
-    console.log("ac")
+    console.log("ac");
     console.log(switchValueAC);
-    console.log("d")
+    console.log("d");
     console.log(switchValueD);
-    console.log("m")
+    console.log("m");
     console.log(switchValueM);
     const updateRoom = async () => {
-      if(listRoomValue != null && listRoomValue != undefined){
+      if (listRoomValue != null && listRoomValue != undefined) {
         try {
-          const roomQuery = app.firestore().collection("rooms").where("number", "==", listRoomValue);
+          const roomQuery = app
+            .firestore()
+            .collection("rooms")
+            .where("number", "==", listRoomValue);
           const querySnapshot = await roomQuery.get();
           querySnapshot.forEach(async (doc) => {
             await doc.ref.update({
@@ -55,7 +58,6 @@ const RoomList = () => {
           console.error("Error updating room:", error);
         }
       }
-
     };
 
     updateRoom();
@@ -64,9 +66,12 @@ const RoomList = () => {
   useEffect(() => {
     console.log(listRoomValue);
     const updateRoom = async () => {
-      if(listRoomValue != null && listRoomValue != undefined){
+      if (listRoomValue != null && listRoomValue != undefined) {
         try {
-          const roomQuery = app.firestore().collection("rooms").where("number", "==", listRoomValue);
+          const roomQuery = app
+            .firestore()
+            .collection("rooms")
+            .where("number", "==", listRoomValue);
           const querySnapshot = await roomQuery.get();
           querySnapshot.forEach(async (doc) => {
             docData = doc.data();
@@ -78,14 +83,10 @@ const RoomList = () => {
           console.error("Error updating room:", error);
         }
       }
-
     };
 
     updateRoom();
   }, [listRoomValue]);
-
-
-  
 
   return (
     <View style={styles.container}>
